@@ -11,31 +11,31 @@ volumes:
     driver: local
     driver_opts:
       type: none
-      device: /Users/ayrtonaldayrnevesestrada/Documents/Docker/Volumenes/Mongo6-0_MONGO_CONFIG
+      device: /Users/ayrtonaldayrnevesestrada/Documents/Docker/Volumenes/Mongo6-0_MONGO_PRUEBAS
       o: bind
   mongo-logs:
     driver: local
     driver_opts:
       type: none
-      device: /Users/ayrtonaldayrnevesestrada/Documents/Docker/Volumenes/Mongo6-0_MONGO_LOGS
+      device: /Users/ayrtonaldayrnevesestrada/Documents/Docker/Volumenes/Mongo6-0_MONGO_PRUEBAS
       o: bind
   mongo-initdb:
     driver: local
     driver_opts:
       type: none
-      device: /Users/ayrtonaldayrnevesestrada/Documents/Docker/Volumenes/Mongo6-0_MONGO_INITDB
+      device: /Users/ayrtonaldayrnevesestrada/Documents/Docker/Volumenes/Mongo6-0_MONGO_PRUEBAS
       o: bind
   mongo-journal:
     driver: local
     driver_opts:
       type: none
-      device: /Users/ayrtonaldayrnevesestrada/Documents/Docker/Volumenes/Mongo6-0_MONGO_JOURNAL
+      device: /Users/ayrtonaldayrnevesestrada/Documents/Docker/Volumenes/Mongo6-0_MONGO_PRUEBAS
       o: bind
   mongo-express-data:
     driver: local
     driver_opts:
       type: none
-      device: /Users/ayrtonaldayrnevesestrada/Documents/Docker/Volumenes/MongoExpress_0_54_MONGO_PRUEBAS
+      device: /Users/ayrtonaldayrnevesestrada/Documents/Docker/Volumenes/Mongo6-0_MONGO_PRUEBAS
       o: bind
 
 networks:
