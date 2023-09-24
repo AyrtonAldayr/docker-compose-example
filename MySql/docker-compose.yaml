@@ -1,0 +1,22 @@
+version: '3.8'
+
+volumes:
+  mysql-data:
+    driver: local
+    driver_opts:
+      type: none
+      device: /Users/ayrtonaldayrnevesestrada/Documents/Docker/Volumenes/MySql810_Example
+      o: bind
+      
+services:
+  mysql:
+    image: mysql:8.1.0
+    container_name: MySQLWebFlux
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "33060:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql:delegated
+
