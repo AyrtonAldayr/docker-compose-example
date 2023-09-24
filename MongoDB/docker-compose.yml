@@ -5,7 +5,7 @@ volumes:
     driver: local
     driver_opts:
       type: none
-      device: /Users/ayrtonaldayrnevesestrada/Documents/Fuentes/GitHub/Volumenes/Mongo6-0_MONGO_PRUEBAS
+      device: /Users/ayrtonaldayrnevesestrada/Documents/Docker/Volumenes/Mongo6-0_MONGO_PRUEBAS
       o: bind
 networks:
   mongo-networks:
