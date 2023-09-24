@@ -1,0 +1,1 @@
+docker-compose -p myapp -f /ruta/al/archivo/docker-compose.yml up
