@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  myapp:
+    build:
+      context: .
+      dockerfile: ./Dockerfile.maven
+    container_name: myapp
+    restart: always
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./logs:/app/logs

@@ -1,0 +1,18 @@
+FROM maven:3.8.3-jdk-17 AS build
+
+WORKDIR /app
+
+# Copiar el archivo settings.xml personalizado al directorio /root/.m2/
+COPY settings.xml /root/.m2/
+
+COPY . .
+
+RUN mvn clean package
+
+FROM adoptopenjdk:17-jre-hotspot-bionic
+
+WORKDIR /app
+
+COPY --from=build /app/target/myapp.jar .
+
+CMD ["java", "-jar", "myapp.jar"]

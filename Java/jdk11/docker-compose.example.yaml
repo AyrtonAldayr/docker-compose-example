@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  myapp:
+    build:
+      context: /ruta/al/contexto
+      dockerfile: /ruta/al/archivo/Dockerfile.myapp
+    container_name: myapp
+    restart: always
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./logs:/app/logs
