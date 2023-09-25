@@ -1,4 +1,4 @@
-version: '3'
+version: '3.8'
 
 volumes:
   mongo-data:
@@ -62,7 +62,7 @@ services:
       - mongo-networks
 
   mongo-express:
-    image: mongo-express:0.54
+    image: mongo-express:1.0.0-alpha
     container_name: MONGO_EXPRESS_PRUEBAS
     restart: always
     ports:
@@ -70,11 +70,14 @@ services:
     depends_on:
       - mongo
     environment:
-      - ME_CONFIG_BASICAUTH_USERNAME=root
-      - ME_CONFIG_BASICAUTH_PASSWORD=root
+      - ME_CONFIG_MONGODB_SERVER=mongo
       - ME_CONFIG_MONGODB_PORT=27017
       - ME_CONFIG_MONGODB_ADMINUSERNAME=root
       - ME_CONFIG_MONGODB_ADMINPASSWORD=root
+      - ME_CONFIG_BASICAUTH_USERNAME=root
+      - ME_CONFIG_BASICAUTH_PASSWORD=root
+    links:
+      - mongo
     volumes:
       - mongo-express-data:/data/db
     networks:

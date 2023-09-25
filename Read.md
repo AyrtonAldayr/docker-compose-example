@@ -18,4 +18,8 @@ Example
   docker-compose -p mysql_webflux-v1 -f ./MySql/docker-compose.yaml up -d
 ```
 
+Example delete
 
+```bash
+  docker-compose -p mongodb-v2 -f ~/Documents/Fuentes/GitHub/docker-compose-example/MongoDB/docker-compose.v2.yml down
+```
