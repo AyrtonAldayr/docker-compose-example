@@ -1,18 +1,13 @@
-FROM adoptopenjdk:17-jdk-hotspot-bionic AS build
 
+FROM alpine:3.18.3 AS build
+RUN apk add --no-cache openjdk17 gradle
 WORKDIR /app
-
-# Copiar el archivo gradle.properties personalizado al directorio /root/.gradle/
-COPY gradle.properties /root/.gradle/
-
 COPY . .
+COPY path/to/gradle.properties .
+RUN gradle build
 
-RUN ./gradlew clean build
-
-FROM adoptopenjdk:17-jre-hotspot-bionic
-
+FROM alpine:3.18.3
+RUN apk add --no-cache openjdk17
 WORKDIR /app
-
-COPY --from=build /app/build/libs/myapp.jar .
-
-CMD ["java", "-jar", "myapp.jar"]
+COPY --from=0 /app/build/libs/myapp.jar .
+CMD ["/usr/bin/java", "-jar", "myapp.jar"]
