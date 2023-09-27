@@ -1,0 +1,28 @@
+version: '3.8'
+
+volumes:
+  java-logs:
+    driver: local
+    driver_opts:
+      type: none
+      device: D:/Docker/Volumenes/Java_desafiliacion
+      o: bind
+
+networks:
+  mynetwork:
+    driver: bridge
+    
+services:
+  myapp:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: myapp
+    restart: always
+    ports:
+      - "8090:8080"
+    volumes:
+      - java-logs:/app/logs
+    networks:
+      - mynetwork
+    image: myapp:v1.0.0
