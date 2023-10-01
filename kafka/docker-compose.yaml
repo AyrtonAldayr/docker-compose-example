@@ -1,0 +1,77 @@
+version: '3.8'
+
+services:
+  zookeeper:
+    image: 'bitnami/zookeeper:3.7.0'
+    ports:
+      - '2181:2181'
+    environment:
+      - ALLOW_ANONYMOUS_LOGIN=yes
+    volumes:
+      - type: volume
+        source: zookeeper_data
+        target: /bitnami/zookeeper/data
+        volume:
+          nocopy: true
+      - type: volume
+        source: zookeeper_logs
+        target: /bitnami/zookeeper/logs
+        volume:
+          nocopy: true
+    networks:
+      - kafka_network
+
+  kafka:
+    image: 'bitnami/kafka:2.8.0'
+    ports:
+      - '9093:9092'
+    environment:
+      - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:2181
+      - ALLOW_PLAINTEXT_LISTENER=yes
+    volumes:
+      - type: volume
+        source: kafka_data
+        target: /bitnami/kafka/data
+        volume:
+          nocopy: true
+      - type: volume
+        source: kafka_logs
+        target: /bitnami/kafka/logs
+        volume:
+          nocopy: true
+    depends_on:
+      - zookeeper
+    networks:
+      - kafka_network
+    links:
+      - zookeeper
+
+networks:
+  kafka_network:
+    driver: bridge
+
+volumes:
+  zookeeper_data:
+    driver: local
+    driver_opts:
+      type: none
+      device: ~/Documents/Docker/Volumenes/zookeeper
+      o: bind
+  zookeeper_logs:
+    driver: local
+    driver_opts:
+      type: none
+      device: ~/Docker/Volumenes/zookeeper
+      o: bind
+  kafka_data:
+    driver: local
+    driver_opts:
+      type: none
+      device: ~/Docker/Volumenes/kafka
+      o: bind
+  kafka_logs:
+    driver: local
+    driver_opts:
+      type: none
+      device: ~/Docker/Volumenes/kafka
+      o: bind
