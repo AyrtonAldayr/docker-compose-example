@@ -5,18 +5,26 @@ volumes:
     driver: local
     driver_opts:
       type: none
-      device: ~/Docker/Volumenes/MySql810_Example
+      device: ~/Documents/Docker/Volumenes/MySql8_0_35-debian
       o: bind
-      
+networks:
+  mysql-networks:
+    driver: bridge
+
 services:
   mysql:
-    image: mysql:8.1.0
-    container_name: MySQLWebFlux
+    image: mysql:8.2.0
+    container_name: mySql
     restart: always
     environment:
+      MYSQL_DATABASE: db
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
       MYSQL_ROOT_PASSWORD: root
     ports:
       - "33060:3306"
     volumes:
       - mysql-data:/var/lib/mysql:delegated
+    networks:
+      - mysql-networks
 
