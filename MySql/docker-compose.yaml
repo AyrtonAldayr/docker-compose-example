@@ -14,6 +14,8 @@ networks:
 services:
   mysql:
     image: mysql:8.2.0
+    #Solo para algunas imagenes y arquitecturas especificas
+    #platform: linux/amd64
     container_name: mySql
     restart: always
     environment:
