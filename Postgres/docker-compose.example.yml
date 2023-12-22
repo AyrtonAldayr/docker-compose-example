@@ -1,0 +1,28 @@
+version: '3.8'
+
+volumes:
+  postgres-data:
+    #driver: local
+    #driver_opts:
+      #type: none
+      #device: D:/Docker/Volumenes/Postgres_LTS
+      #o: bind
+
+networks:
+  mynetwork:
+    driver: bridge
+
+services:
+  postgres:
+    image: postgres:alpine3.19
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: root
+      PGDATA: /var/lib/postgresql/data/pgdata  # Add this line
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "54320:5432"
+    networks:
+      - mynetwork
