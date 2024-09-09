@@ -3,6 +3,7 @@ version: '3.8'
 services:
   zookeeper:
     image: 'bitnami/zookeeper:3.7.0'
+    platform: linux/amd64 # Use this option to run on M1 Macs
     ports:
       - '2181:2181'
     environment:
@@ -23,6 +24,7 @@ services:
 
   kafka:
     image: 'bitnami/kafka:2.8.0'
+    platform: linux/amd64 # Use this option to run on M1 Macs
     ports:
       - '9093:9092'
     environment:
@@ -61,17 +63,17 @@ volumes:
     driver: local
     driver_opts:
       type: none
-      device: ~/Docker/Volumenes/zookeeper
+      device: ~/Documents/Docker/Volumenes/zookeeper
       o: bind
   kafka_data:
     driver: local
     driver_opts:
       type: none
-      device: ~/Docker/Volumenes/kafka
+      device: ~/Documents/Docker/Volumenes/kafka
       o: bind
   kafka_logs:
     driver: local
     driver_opts:
       type: none
-      device: ~/Docker/Volumenes/kafka
+      device: ~/Documents/Docker/Volumenes/kafka
       o: bind
