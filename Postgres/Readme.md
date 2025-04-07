@@ -1,4 +1,3 @@
-
 # Conexión a un contenedor Docker de PostgreSQL
 
 Este archivo README te guiará a través de los pasos necesarios para conectarte a un contenedor Docker de PostgreSQL y ejecutar consultas SQL básicas, como listar las bases de datos, las tablas y realizar un SELECT en las tablas existentes.
@@ -7,9 +6,9 @@ Este archivo README te guiará a través de los pasos necesarios para conectarte
 
 Antes de comenzar, asegúrate de tener instalado Docker y Docker Compose en tu máquina. Puedes descargar Docker desde el siguiente enlace: [https://www.docker.com/get-started](https://www.docker.com/get-started) y Docker Compose desde el siguiente enlace: [https://docs.docker.com/compose/install/](https://docs.docker.com/compose/install/).
 
-## Paso 1: Configurar `docker-compose.yml`
+## Paso 1: Revisar el archivo `docker-compose.example.yml`
 
-Primero, necesitas configurar el archivo `docker-compose.yml`. Asegúrate de tener el siguiente contenido en tu archivo `docker-compose.yml`:
+En este proyecto, encontrarás el archivo de configuración con el nombre `docker-compose.example.yml`. Asegúrate de revisar su contenido:
 
 ```yaml
 version: '3.8'
@@ -39,9 +38,9 @@ services:
 
 Este archivo configurará un servicio de PostgreSQL que utilizará el archivo `init.sql` para inicializar la base de datos.
 
-## Paso 2: Crear el archivo de inicialización SQL
+## Paso 2: Revisar el archivo de inicialización SQL
 
-Crea un archivo `init.sql` en el mismo directorio donde se encuentra tu archivo `docker-compose.yml` con el siguiente contenido:
+En el mismo directorio encontrarás el archivo `init.sql` con el siguiente contenido:
 
 ```sql
 CREATE USER usuario1 WITH PASSWORD 'usuario1';
@@ -53,13 +52,25 @@ Este archivo creará un usuario y una base de datos iniciales cuando se inicie e
 
 ## Paso 3: Iniciar el contenedor con Docker Compose
 
-Para iniciar el contenedor de PostgreSQL utilizando Docker Compose, ejecuta el siguiente comando en tu terminal:
+Para iniciar el contenedor de PostgreSQL utilizando Docker Compose con el archivo específico, ejecuta el siguiente comando en tu terminal:
+
+```sh
+docker-compose -f Postgres/docker-compose.example.yml up -d
+```
+
+Este comando creará y ejecutará el contenedor de PostgreSQL en segundo plano utilizando la configuración del archivo `docker-compose.example.yml`.
+
+Alternativamente, si deseas usar este archivo como tu configuración predeterminada, puedes copiarlo:
+
+```sh
+cp docker-compose.example.yml docker-compose.yml
+```
+
+Y luego simplemente ejecutar:
 
 ```sh
 docker-compose up -d
 ```
-
-Este comando creará y ejecutará el contenedor de PostgreSQL en segundo plano.
 
 ## Paso 4: Conectarse al contenedor de PostgreSQL
 
@@ -70,7 +81,7 @@ Para conectarte al contenedor de PostgreSQL, puedes utilizar una herramienta de 
 Si prefieres utilizar la línea de comandos, puedes ejecutar el siguiente comando para conectarte al contenedor de PostgreSQL:
 
 ```sh
-docker exec -it nombre_del_servicio psql -U usuario1 -d db_pruebas
+docker exec -it postgres psql -U usuario1 -d db_pruebas
 ```
 
 Esto te permitirá ingresar al contenedor y ejecutar comandos SQL.
